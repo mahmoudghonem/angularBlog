@@ -1,0 +1,34 @@
+<div class="loginContainer">
+    <div class="row justify-content-center align-items-center">
+        <form [formGroup]="loginForm">
+            <div class="form-group ">
+                <label for="username">Username</label>
+                <input [class.is-invalid]="username?.invalid && (username?.dirty || username?.touched)" type="text"
+                    class="form-control" id="username" formControlName="username">
+                <small *ngIf="username?.errors?.required" class="text-danger"> Username is required.</small>
+                <small *ngIf="username?.errors?.minlength" class="text-danger">Username must be at least 8 characters
+                    long.</small>
+                <small *ngIf="username?.errors?.maxlength" class="text-danger">Username can not extend 140</small>
+                <small *ngIf="username?.errors?.cannotContainSpace" class="text-danger"> Username can not contain
+                    space.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)" type="password"
+                    class="form-control" id="username" formControlName="password">
+                <small *ngIf="password?.errors?.required" class="text-danger">Password is required.</small>
+                <small *ngIf="password?.errors?.minlength" class="text-danger">Password must be at least 8 characters
+                    long.</small>
+            </div>
+            <div>
+                <small *ngIf="invalidLogin" class="text-danger">{{errorMsg.toUpperCase()}}.</small>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" role="button" [disabled]="!loginForm.valid"
+                    (click)="signIn(loginForm.value)">
+                    Sign In
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
