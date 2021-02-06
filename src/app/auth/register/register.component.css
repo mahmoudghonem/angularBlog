@@ -1,0 +1,8 @@
+.jumbotron.vertical-center {
+    margin-bottom: 0; 
+  }
+.vertical-center {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+  }

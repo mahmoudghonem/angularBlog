@@ -1,11 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../models/userModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private url: string = 'https://mydevsblog.herokuapp.com/users/'
+  private url: string = 'https://mydevsblog.herokuapp.com/users/';
+  user = new User;
   constructor(private http: HttpClient) { }
 
   public get loggedIn(): boolean {
@@ -19,6 +21,12 @@ export class UserService {
   }
   register(body: any) {
     return this.http.post(`${this.url}register`, body);
+  }
+  usernameCheck(body: any) {
+    return this.http.post(`${this.url}usernamecheck`, body);
+  }
+  emailCheck(body: any) {
+    return this.http.post(`${this.url}emailcheck`, body);
   }
   getMe() {
     return this.http.get(`${this.url}me`);

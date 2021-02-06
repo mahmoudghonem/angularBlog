@@ -1,0 +1,148 @@
+#nav{
+width: 100%;
+height: 60px;
+background-color: #ede7f6;
+display: flex;
+}
+
+#TextWraper{
+
+    height: 100%;
+    flex: 1;
+
+}
+
+#SearchWraper{
+    height: 100%;
+    flex: 2;
+    padding-top: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+
+}
+
+#ButtonWraper{
+
+    height: 100%;
+    flex: 1;
+
+}
+
+#photoWraper{
+    height: 100%;
+    flex: 1;
+    text-align: center;
+}
+
+#title{
+
+    font-family: myFirstFont;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;  
+}
+
+
+img{
+
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.follwing{
+
+    color:#616161;
+}
+
+.blogFollowing{
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    flex: 2;
+    
+}
+
+.followNum{
+    flex: 1;
+}
+
+.BFcontainer{
+
+    height: 280px;
+    width: 100%;
+    display: flex;
+}
+
+.fBlog{
+    flex: 1;
+    height: 100%;
+    margin: 12px;
+}
+
+.blogHeader{
+
+    width: 100%;
+    height: 80px;
+    background-color: #ede7f6 ;
+}
+.blogBody{
+
+    width: 100%;
+    height: 200px;
+    background-color:#fff;
+    padding: 15px;
+}
+.Blogtitle{
+
+    text-align: left;
+    font-weight: bold;
+
+}
+.Blogcontent{
+    text-align: left;
+}
+
+#cont{
+
+    display:flex;
+}
+
+.blogList{
+
+
+
+    flex: 2;
+}
+
+.follwerList{
+    flex: 1;
+}
+
+.followerbody{
+
+    margin: auto;
+    width: 85%;
+    height: 400px;
+    border: 2px solid black;
+}
+
+.followcell{
+    border: 2px solid black;
+    margin: auto;
+    width: 95%;
+    height: 80px;
+    margin: 10px;
+    background-color: #f5f5f5;
+    display: flex;
+}
+
+#p1{
+
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.f{
+flex: 1;
+}
+

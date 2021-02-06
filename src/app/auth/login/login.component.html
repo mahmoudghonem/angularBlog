@@ -1,34 +1,58 @@
-<div class="loginContainer">
-    <div class="row justify-content-center align-items-center">
-        <form [formGroup]="loginForm">
-            <div class="form-group ">
-                <label for="username">Username</label>
-                <input [class.is-invalid]="username?.invalid && (username?.dirty || username?.touched)" type="text"
-                    class="form-control" id="username" formControlName="username">
-                <small *ngIf="username?.errors?.required" class="text-danger"> Username is required.</small>
-                <small *ngIf="username?.errors?.minlength" class="text-danger">Username must be at least 8 characters
-                    long.</small>
-                <small *ngIf="username?.errors?.maxlength" class="text-danger">Username can not extend 140</small>
-                <small *ngIf="username?.errors?.cannotContainSpace" class="text-danger"> Username can not contain
-                    space.</small>
+<app-navbar-unsign></app-navbar-unsign>
+<div class="jumbotron vertical-center">
+    <div class="container">
+        <div class="row text-white align-items-center justify-content-center">
+            <div class="col col-xl-5 col-lg-6 col-md-8 col-sm-10 text-center form p-4">
+                <h1 class="display-5 py-2 text-dark">Welcome To Devs Blog</h1>
+                <div class="px-2">
+                    <form [formGroup]="loginForm">
+                        <div class="form-group">
+                            <input [class.is-invalid]="username?.invalid && (username?.dirty || username?.touched)"
+                                [class.is-valid]="username?.touched && !(username?.invalid)" type="text"
+                                class="form-control" id="username" formControlName="username" placeholder="username">
+                            <small *ngIf="username?.errors?.required && username?.touched" class="text-danger">
+                                Username is
+                                required.</small>
+                            <small *ngIf="username?.errors?.minlength&& username?.touched" class="text-danger">Username
+                                must
+                                be
+                                at
+                                least 8 characters
+                                long.</small>
+                            <small *ngIf="username?.errors?.maxlength&& username?.touched" class="text-danger">Username
+                                can
+                                not
+                                extend 140</small>
+                            <small *ngIf="username?.errors?.cannotContainSpace&& username?.touched" class="text-danger">
+                                Username
+                                can not contain
+                                space.</small>
+                        </div>
+                        <div class="form-group">
+                            <input [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)"
+                                [class.is-valid]="password?.touched && !(password?.invalid)" type="password"
+                                class="form-control" id="username" formControlName="password" placeholder="password">
+                            <small *ngIf="password?.errors?.required&& password?.touched" class="text-danger">Password
+                                is
+                                required.</small>
+                            <small *ngIf="password?.errors?.minlength&& password?.touched" class="text-danger">Password
+                                must
+                                be
+                                at
+                                least 8 characters
+                                long.</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" role="button" [disabled]="!loginForm.valid"
+                            (click)="signIn(loginForm.value)">
+                            Login
+                        </button>
+                        <div>
+                            <small *ngIf="invalidLogin" class="text-danger">{{errorMsg.toUpperCase()}}.</small>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)" type="password"
-                    class="form-control" id="username" formControlName="password">
-                <small *ngIf="password?.errors?.required" class="text-danger">Password is required.</small>
-                <small *ngIf="password?.errors?.minlength" class="text-danger">Password must be at least 8 characters
-                    long.</small>
-            </div>
-            <div>
-                <small *ngIf="invalidLogin" class="text-danger">{{errorMsg.toUpperCase()}}.</small>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" role="button" [disabled]="!loginForm.valid"
-                    (click)="signIn(loginForm.value)">
-                    Sign In
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

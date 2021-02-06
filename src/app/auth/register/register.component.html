@@ -1,58 +1,93 @@
-<div class="container">
-    <div class="row justify-content-center align-items-center">
-        <form [formGroup]="regForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input [class.is-invalid]="username?.invalid && (username?.dirty || username?.touched)" type="text"
-                    class="form-control" id="username" formControlName="username">
-                <small *ngIf="username?.errors?.required" class="text-danger"> Username is required.</small>
-                <small *ngIf="username?.errors?.minlength" class="text-danger">Username must be at least 8 characters
-                    long.</small>
-                <small *ngIf="username?.errors?.maxlength" class="text-danger">Username can not extend 140</small>
-                <small *ngIf="username?.errors?.cannotContainSpace" class="text-danger"> Username can not contain
-                    space.</small>
-            </div>
-            <div class="form-group">
-                <label for="firstname">First Name</label>
-                <input [class.is-invalid]="firstname?.invalid && (firstname?.dirty || firstname?.touched)" type="text"
-                    class="form-control" id="firstname" formControlName="firstname">
-                <small *ngIf="firstname?.errors?.required" class="text-danger">Firstname is required.</small>
-                <small *ngIf="firstname?.errors?.maxlength" class="text-danger">Firstname can not extend 140
-                    characters.</small>
-            </div>
-            <div class="form-group">
-                <label for="lastname">Last Name</label>
-                <input [class.is-invalid]="lastname?.invalid && (lastname?.dirty || lastname?.touched)" type="text"
-                    class="form-control" id="lastname" formControlName="lastname">
-                <small *ngIf="lastname?.errors?.required" class="text-danger">Lastname is required.</small>
-                <small *ngIf="lastname?.errors?.maxlength" class="text-danger">Lastname can not extend 140
-                    characters.</small>
+<app-navbar-unsign></app-navbar-unsign>
+<div class="jumbotron vertical-center">
+    <div class="container">
+        <div class="row text-white align-items-center justify-content-center">
+            <div class="col col-xl-5 col-lg-6 col-md-8 col-sm-10 text-center form p-4">
+                <h1 class="display-5 py-2 text-dark">Welcome To Devs Blog</h1>
+                <div class="px-2">
+                    <form [formGroup]="regForm">
+                        <div class="form-group">
+                            <input
+                                [class.is-invalid]="username?.invalid && (username?.dirty || username?.touched) || usernameTaken"
+                                [class.is-valid]="username?.touched && !(username?.invalid) && !(usernameTaken)"
+                                type="text" class="form-control" id="username" formControlName="username"
+                                placeholder="Username" (keyup)="checkUsername(regForm.value)">
+                            <small *ngIf="usernameTaken" class="text-danger">{{errorMsg}}</small>
+                            <small *ngIf="username?.errors?.required && username?.touched" class="text-danger"> Username
+                                is
+                                required.</small>
+                            <small *ngIf="username?.errors?.minlength && username?.touched" class="text-danger">Username
+                                must be at least 8 characters
+                                long.</small>
+                            <small *ngIf="username?.errors?.maxlength && username?.touched" class="text-danger">Username
+                                can
+                                not extend 140</small>
+                            <small *ngIf="username?.errors?.cannotContainSpace && username?.touched"
+                                class="text-danger">
+                                Username can not contain
+                                space.</small>
+                        </div>
+                        <div class="form-group">
+                            <input [class.is-invalid]="firstname?.invalid && (firstname?.dirty || firstname?.touched)"
+                                [class.is-valid]="firstname?.touched && !(firstname?.invalid)" type="text"
+                                class="form-control" id="firstname" formControlName="firstname"
+                                placeholder="First Name">
+                            <small *ngIf="firstname?.errors?.required && firstname?.touched"
+                                class="text-danger">Firstname
+                                is required.</small>
+                            <small *ngIf="firstname?.errors?.maxlength && firstname?.touched"
+                                class="text-danger">Firstname
+                                can not extend 140
+                                characters.</small>
+                        </div>
+                        <div class="form-group">
+                            <input [class.is-invalid]="lastname?.invalid && (lastname?.dirty || lastname?.touched)"
+                                [class.is-valid]="lastname?.touched && !(lastname?.invalid)" type="text"
+                                class="form-control" id="lastname" formControlName="lastname" placeholder="Last Name">
+                            <small *ngIf="lastname?.errors?.required && lastname?.touched" class="text-danger">Lastname
+                                is
+                                required.</small>
+                            <small *ngIf="lastname?.errors?.maxlength && lastname?.touched" class="text-danger">Lastname
+                                can
+                                not extend 140
+                                characters.</small>
 
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)" type="text"
-                    class="form-control" id="email" formControlName="email">
-                <small *ngIf="email?.errors?.required" class="text-danger">Email is required.</small>
-                <small *ngIf="email?.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+                        </div>
+                        <div class="form-group">
+                            <input [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)" type="text"
+                                [class.is-valid]="email?.touched && !(email?.invalid)&& !(emailTaken)"
+                                class="form-control" id="email" formControlName="email" placeholder="Email"
+                                (keyup)="checkEmail(regForm.value)">
+                            <small *ngIf="emailTaken" class="text-danger">{{errorMsg}}</small>
+                            <small *ngIf="email?.errors?.required && email?.touched" class="text-danger">Email is
+                                required.</small>
+                            <small *ngIf="email?.errors?.pattern && email?.touched" class="text-danger">Please provide a
+                                valid email address</small>
 
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)" type="password"
-                    class="form-control" id="username" formControlName="password">
-                <small *ngIf="password?.errors?.required" class="text-danger">Password is required.</small>
-                <small *ngIf="password?.errors?.minlength" class="text-danger">Password must be at least 8 characters
-                    long.</small>
+                        </div>
+                        <div class="form-group">
+                            <input [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)"
+                                [class.is-valid]="password?.touched && !(password?.invalid)" type="password"
+                                class="form-control" id="username" formControlName="password" placeholder="Password">
+                            <small *ngIf="password?.errors?.required && password?.touched" class="text-danger">Password
+                                is
+                                required.</small>
+                            <small *ngIf="password?.errors?.minlength && password?.touched" class="text-danger">Password
+                                must be at least 8 characters
+                                long.</small>
 
+                        </div>
+                        <button type="submit" class="btn btn-primary " role="button"
+                            [disabled]="!regForm.valid || usernameTaken || emailTaken"
+                            (click)="register(regForm.value)">
+                            Sign Up
+                        </button>
+                        <div>
+                            <small *ngIf="invalidRegister" class="text-danger">{{errorMsg}}</small>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <small *ngIf="invalidRegister" class="text-danger">{{errorMsg}}</small>
-                <button type="submit" class="btn btn-primary " role="button" [disabled]="!regForm.valid"
-                    (click)="register(regForm.value)">
-                    Sign Up
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

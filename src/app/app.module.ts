@@ -8,6 +8,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { jwtOptionsFactory } from './helpers/intercerptor/JwtOptions';
+import { HomeComponent } from './homepage/home/home.component';
+import { NavbarUnsignComponent } from './navbar/navbar-unsign/navbar-unsign.component';
+import { NavbarSignComponent } from './navbar/navbar-sign/navbar-sign.component';
 
 
 @NgModule({
@@ -15,6 +18,9 @@ import { jwtOptionsFactory } from './helpers/intercerptor/JwtOptions';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    HomeComponent,
+    NavbarSignComponent,
+    NavbarUnsignComponent,
   ],
   imports: [
     BrowserModule,

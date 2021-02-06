@@ -1,0 +1,14 @@
+.navbar{
+    background-color: #39424E;
+}
+.navbar > li{
+    padding-left:5px;
+    padding-right:5px;
+    display: inline-block;
+  }
+
+.navbar-expand-sm{
+    padding-left:10%;
+    padding-right:10%;
+}
+.popout { position: absolute !important;}

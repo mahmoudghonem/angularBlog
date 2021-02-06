@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   invalidRegister!: boolean;
+  usernameTaken!: boolean;
+  emailTaken!: boolean;
   errorMsg: string = 'Invalid username and/or password.';
   eMsg!: string;
   regForm = new FormGroup({
@@ -45,7 +47,40 @@ export class RegisterComponent implements OnInit {
   get email() { return this.regForm.get('email') }
   get password() { return this.regForm.get('password') }
 
-  register(body:any){
+  register(body: any) {
+    this.userService.register(body)
+      .subscribe((result: any) => {
 
+      }, (e) => {
+        this.invalidRegister = true;
+        this.eMsg = e.error.message;
+        if (this.eMsg == 'USERNAME_TAKEN') {
+          this.errorMsg = `username ${body.username} is taken`;
+        } else if (this.eMsg == 'EMAIL_REGISTERED') {
+          this.errorMsg = `${body.email} is already registered`;
+        }
+      });
+  }
+  checkUsername(body: any) {
+    this.userService.usernameCheck(body).subscribe((result: any) => {
+      this.usernameTaken = false;
+    }, (e) => {
+      this.eMsg = e.error.message;
+      if (this.eMsg == 'USERNAME_TAKEN') {
+        this.errorMsg = `username ${body.username} is taken`;
+        this.usernameTaken = true;
+      }
+    });
+  }
+  checkEmail(body: any) {
+    this.userService.emailCheck(body).subscribe((result: any) => {
+      this.emailTaken = false;
+    }, (e) => {
+      this.eMsg = e.error.message;
+      if (this.eMsg == 'EMAIL_REGISTERED') {
+        this.errorMsg = `${body.email} is already registered`;
+        this.emailTaken = true;
+      }
+    });
   }
 }
