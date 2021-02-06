@@ -1,4 +1,6 @@
-<div [hidden]="!isLogin"><app-navbar-sign></app-navbar-sign></div>
-<div [hidden]="isLogin"><app-navbar-unsign ></app-navbar-unsign></div>
-<div [hidden]="!isLogin"><app-followblogs ></app-followblogs></div>
-<div><app-publicblogs></app-publicblogs></div>
+<ng-container [ngSwitch]="isLogin">
+    <app-navbar-sign *ngSwitchCase="true"></app-navbar-sign>
+    <app-navbar-unsign *ngSwitchCase="false"></app-navbar-unsign>
+    <app-followblogs *ngSwitchCase="true"></app-followblogs>
+</ng-container>
+<app-publicblogs></app-publicblogs>

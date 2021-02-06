@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark">
+<nav class="navbar navbar-expand-sm navbar-dark ">
     <div class="container-fluid">
         <a class="navbar-brand font-weight-bold" href="#">Devs Blog</a>
             <ul class="navbar-nav">
@@ -10,18 +10,21 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-success text-white btn-block" type="button" routerLink="/writepost">Write Post</button>
+                </li>
                 <li class="nav-item dropdown">
                     <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <a class="d-none d-sm-inline text-white">Mahmoud Ghonem</a>
+                        <a class="d-none d-sm-inline text-white">{{username| truncate:[12,'...']}}</a>
                         <img src="assets/defaultPP.jpg" width="30" height="30"
                             class="d-inline-block align-top rounded-circle" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right popout"
                         aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Dashboard</a>
-                        <a class="dropdown-item" href="#">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Log Out</a>
+                        <a class="dropdown-item">Dashboard</a>
+                        <a class="dropdown-item">Edit Profile</a>
+                        <a class="dropdown-item" (click)="logout()">Log Out</a>
                     </div>
                 </li>
             </ul>

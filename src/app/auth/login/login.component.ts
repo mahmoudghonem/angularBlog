@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { UsernameValidator } from 'src/app/helpers/validators/UsernameValidator';
 import { UserService } from 'src/app/services/user.service';
 
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
       Validators.minLength(8),
     ]),
   })
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -37,8 +39,11 @@ export class LoginComponent implements OnInit {
   signIn(body: any) {
     this.userService.login(body)
       .subscribe((result: any) => {
-        this.userService.user=result;
         localStorage.setItem('token', result.token);
+        let token = this.userService.getToken()?.toString();
+        let jwt = new JwtHelperService();
+        this.userService.currentUser = jwt.decodeToken(token);
+        this.router.navigate(['/']);
       }, (e) => {
         this.eMsg = e.error.message;
         if (this.eMsg == 'WRONG_USERNAME') {

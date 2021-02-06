@@ -15,6 +15,11 @@ import { FollowblogsComponent } from './homepage/followblogs/followblogs.compone
 import { PublicblogsComponent } from './homepage/publicblogs/publicblogs.component';
 import { BlogcardComponent } from './homepage/blogcard/blogcard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BlogcreateComponent } from './homepage/blogcreate/blogcreate.component';
+import { TruncatePipe } from './helpers/pipes/truncate.pipe';
+import { UserService } from './services/user.service';
+import { BlogService } from './services/blog.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -28,6 +33,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FollowblogsComponent,
     PublicblogsComponent,
     BlogcardComponent,
+    BlogcreateComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +55,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     //   useClass: TokenInterceptor,
     //   multi: true
     // }
+    UserService,
+    BlogService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

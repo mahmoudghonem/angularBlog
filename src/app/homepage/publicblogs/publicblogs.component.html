@@ -10,12 +10,13 @@
                         alt="Card image cap">
                 </ng-container>
                 <ng-container class="title">{{item.title}}</ng-container>
-                <ng-container class="body">{{item.body | slice:0:200}}</ng-container>
+                <ng-container class="body">{{item.body |truncate:[200,'...']}}</ng-container>
                 <ng-container class="date">{{item.createdAt | date:'mediumDate'}}</ng-container>
                 <ng-container class="likes">{{item.likes.length}}</ng-container>
             </app-blogcard>
         </ng-container>
     </div>
-<pagination-controls id="foo" (pageChange)="loadPage($event)" (pageBoundsCorrection)="loadPage($event)" previousLabel="<" nextLabel=">" [autoHide]="totalPage==1">
-</pagination-controls>
+    <pagination-controls id="foo" (pageChange)="loadPage($event)" (pageBoundsCorrection)="loadPage($event)"
+        previousLabel="<" nextLabel=">" [autoHide]="totalPage==1">
+    </pagination-controls>
 </div>

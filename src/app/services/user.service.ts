@@ -1,19 +1,32 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/userModel';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private url: string = 'https://mydevsblog.herokuapp.com/users/';
-  user!:User;
-  constructor(private http: HttpClient) { }
+  currentUser!: any;
+  constructor(private http: HttpClient, private router: Router) {
+    let token = this.getToken();
+    if (!token) {
+      this.currentUser = null;
+    } else {
+      let jwt = new JwtHelperService();
+      const isExpired = jwt.isTokenExpired(token);
+      if (isExpired)
+        this.logout();
+      else
+        this.currentUser = jwt.decodeToken(token);
+    }
+  }
 
   public get loggedIn(): boolean {
-    return localStorage.getItem('token') !== null;
+    return this.getToken() !== null;
   }
-  public getToken() {
+  public getToken(){
     return localStorage.getItem('token');
   }
   login(body: any) {
@@ -53,7 +66,13 @@ export class UserService {
     return this.http.delete(`${this.url}delete`);
   }
   logout() {
+    // this.http.get(`${this.url}logout`).subscribe((r) => {
+    //   console.log(r);
+    // }, (e) => {
+    //   console.log(e);
+    // });
     localStorage.removeItem('token');
-    return this.http.get(`${this.url}logout`);
+    this.currentUser = null;
+    this.router.navigate(['home']);
   }
 }

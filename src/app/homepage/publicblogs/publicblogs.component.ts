@@ -19,27 +19,20 @@ export class PublicblogsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.articleService.getBlogs(this.currentPage, this.limit).subscribe((result: any) => {
-      console.log(result);
       this.totalPage = result.pagingCounter;
       this.articles = result.docs;
       if (this.articles.length == 0)
         this.isLoadedData = true
       else
         this.isLoadedData = false
-
-      console.log(this.articles);
     }, (e) => {
-      console.log(e);
     })
   }
   loadPage(page: number) {
     this.articleService.getBlogs(page, this.limit).subscribe((result: any) => {
       console.log(result);
       this.articles = result.docs;
-      console.log(this.articles);
-
     }, (e) => {
-      console.log(e);
     })
 
   }

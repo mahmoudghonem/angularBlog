@@ -20,7 +20,6 @@ export class FollowblogsComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleService.getFollowBlogs(this.currentPage, this.limit).subscribe((result: any) => {
-      console.log(result);
       this.totalPage = result.pagingCounter;
       this.articles = result.docs;
       if (this.articles.length == 0)
@@ -28,19 +27,15 @@ export class FollowblogsComponent implements OnInit {
       else
         this.isLoadedData = false
 
-      console.log(this.articles);
     }, (e) => {
-      console.log(e);
     })
   }
   loadPage(page: number) {
     this.articleService.getFollowBlogs(page, this.limit).subscribe((result: any) => {
       console.log(result);
       this.articles = result.docs;
-      console.log(this.articles);
 
     }, (e) => {
-      console.log(e);
     })
 
   }

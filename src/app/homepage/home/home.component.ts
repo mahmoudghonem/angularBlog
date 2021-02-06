@@ -10,10 +10,10 @@ export class HomeComponent implements OnInit {
 
   isLogin!: boolean;
   constructor(private userService: UserService) {
-    this.isLogin = this.userService.loggedIn;
+    this.isLogin = this.userService.loggedIn;    
   }
 
   ngOnInit(): void {
+    this.isLogin = this.userService.loggedIn;    
   }
-
 }
