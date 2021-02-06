@@ -7,7 +7,7 @@ import { User } from '../models/userModel';
 })
 export class UserService {
   private url: string = 'https://mydevsblog.herokuapp.com/users/';
-  user = new User;
+  user!:User;
   constructor(private http: HttpClient) { }
 
   public get loggedIn(): boolean {

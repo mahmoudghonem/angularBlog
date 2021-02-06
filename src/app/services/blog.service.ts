@@ -10,20 +10,34 @@ export class BlogService {
   getAll() {
     return this.http.get(`${this.url}`);
   }
-  getBlogs() {
-    return this.http.get(`${this.url}/getBlogs`);
+  getBlogs(page?: number, limit?: number) {
+    if (page)
+      return this.http.get(`${this.url}getBlogs?page=${page}`);
+    else if (limit)
+      return this.http.get(`${this.url}getBlogs?limit=${limit}`);
+    else if (page && limit)
+      return this.http.get(`${this.url}getBlogs?page=${page}&limit=${limit}`);
+    else
+      return this.http.get(`${this.url}getBlogs`);
   }
   getMyBlogs() {
-    return this.http.get(`${this.url}/myarticles`);
+    return this.http.get(`${this.url}myarticles`);
   }
-  getFollowBlogs() {
-    return this.http.get(`${this.url}/followArticles`);
+  getFollowBlogs(page?: number, limit?: number) {
+    if (page)
+      return this.http.get(`${this.url}followArticles?page=${page}`);
+    else if (limit)
+      return this.http.get(`${this.url}followArticles?limit=${limit}`);
+    else if (page && limit)
+      return this.http.get(`${this.url}followArticles?page=${page}&limit=${limit}`);
+    else
+      return this.http.get(`${this.url}followArticles`);
   }
   getSavedBlogs() {
-    return this.http.get(`${this.url}/savedArticles`);
+    return this.http.get(`${this.url}savedArticles`);
   }
   searchBy() {
-    return this.http.get(`${this.url}/search/`);
+    return this.http.get(`${this.url}search/`);
   }
   getBlog(id: any) {
     return this.http.get(`${this.url}${id}`);

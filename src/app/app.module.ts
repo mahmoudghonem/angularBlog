@@ -11,6 +11,10 @@ import { jwtOptionsFactory } from './helpers/intercerptor/JwtOptions';
 import { HomeComponent } from './homepage/home/home.component';
 import { NavbarUnsignComponent } from './navbar/navbar-unsign/navbar-unsign.component';
 import { NavbarSignComponent } from './navbar/navbar-sign/navbar-sign.component';
+import { FollowblogsComponent } from './homepage/followblogs/followblogs.component';
+import { PublicblogsComponent } from './homepage/publicblogs/publicblogs.component';
+import { BlogcardComponent } from './homepage/blogcard/blogcard.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -21,12 +25,16 @@ import { NavbarSignComponent } from './navbar/navbar-sign/navbar-sign.component'
     HomeComponent,
     NavbarSignComponent,
     NavbarUnsignComponent,
+    FollowblogsComponent,
+    PublicblogsComponent,
+    BlogcardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

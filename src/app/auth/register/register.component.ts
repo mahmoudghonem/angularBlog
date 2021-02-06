@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   usernameTaken!: boolean;
   emailTaken!: boolean;
   errorMsg: string = 'Invalid username and/or password.';
+  takenMsg: string = '';
   eMsg!: string;
   regForm = new FormGroup({
     'username': new FormControl('', [
@@ -78,7 +79,7 @@ export class RegisterComponent implements OnInit {
     }, (e) => {
       this.eMsg = e.error.message;
       if (this.eMsg == 'EMAIL_REGISTERED') {
-        this.errorMsg = `${body.email} is already registered`;
+        this.takenMsg = `${body.email} is already registered`;
         this.emailTaken = true;
       }
     });

@@ -58,7 +58,7 @@
                                 [class.is-valid]="email?.touched && !(email?.invalid)&& !(emailTaken)"
                                 class="form-control" id="email" formControlName="email" placeholder="Email"
                                 (keyup)="checkEmail(regForm.value)">
-                            <small *ngIf="emailTaken" class="text-danger">{{errorMsg}}</small>
+                            <small *ngIf="emailTaken" class="text-danger">{{takenMsg}}</small>
                             <small *ngIf="email?.errors?.required && email?.touched" class="text-danger">Email is
                                 required.</small>
                             <small *ngIf="email?.errors?.pattern && email?.touched" class="text-danger">Please provide a
