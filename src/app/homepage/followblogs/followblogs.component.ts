@@ -13,7 +13,7 @@ export class FollowblogsComponent implements OnInit {
   currentPage: number = 1;
   totalPage!: number;
   limit: number = 6;
-  myImgUrl: string = 'assets/defaultBlogP.jpg';
+  myImgSrc: string = 'assets/defaultBlogP.jpg';
   constructor(private articleService: BlogService) {
     this.isLoadedData = true;
   }

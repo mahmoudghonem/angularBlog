@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Article } from '../models/blogModel';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +46,8 @@ export class BlogService {
   getBlogLikes(id: any) {
     return this.http.get(`${this.url}likecount/${id}`);
   }
-  createBlog(body: any) {
-    return this.http.post(`${this.url}create`, body);
+  createBlog(formData: FormData) {
+    return this.http.post(`${this.url}create`, formData);
   }
   updatePost(id: any, body: any) {
     return this.http.patch(`${this.url}update/${id}`, body);

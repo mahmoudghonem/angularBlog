@@ -6,6 +6,7 @@ export class Article{
     createdAt!: Date;
     updatedAt!: Date;
     photo!: string;
+    cloudinary_id!: string;
     likes!: string[];
     comments!: string[];
     reads!: number[];

@@ -1,24 +1,30 @@
 <div class="card mt-4 p-0">
-    <ng-content class=".img"></ng-content>
-    <div class="card-body">
-      <h4 class="card-title">
-        <ng-content select=".title"></ng-content>
-      </h4>
-      <p class="card-text p-2">
-        <ng-content select=".body"></ng-content>
-      </p>
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="create-date">
-          <span class="fa fa-clock-o mr-1"></span>
-          <ng-content select=".date"></ng-content>
-        </div>
-        <div class="align-items-end">
-          <span class="fa fa-heart"></span>
+  <ng-content class=".img"></ng-content>
+  <div class="card-body">
+    <h4 class="card-title">
+      <ng-content select=".title"></ng-content>
+    </h4>
+    <p class="card-text p-2">
+      <ng-content select=".body"></ng-content>
+    </p>
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="create-date">
+        <span class="fa fa-clock-o mr-1"></span>
+        <ng-content select=".date"></ng-content>
+      </div>
+      <div class="row align-items-end">
+        <div> <span class="fa fa-heart"></span>
           <span class="p-1">
             <ng-content select=".likes"></ng-content>
+          </span>
+        </div>
+        <div>
+          <span class="fa fa-eye"></span>
+          <span class="p-1">
+            <ng-content select=".reads"></ng-content>
           </span>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -66,11 +66,6 @@ export class UserService {
     return this.http.delete(`${this.url}delete`);
   }
   logout() {
-    // this.http.get(`${this.url}logout`).subscribe((r) => {
-    //   console.log(r);
-    // }, (e) => {
-    //   console.log(e);
-    // });
     localStorage.removeItem('token');
     this.currentUser = null;
     this.router.navigate(['home']);

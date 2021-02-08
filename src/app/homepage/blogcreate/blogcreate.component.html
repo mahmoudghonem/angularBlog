@@ -1,7 +1,32 @@
 <app-navbar-sign></app-navbar-sign>
-<div class="container">
-    <form [formGroup]="">
+<div class="container  pt-5">
+    <form [formGroup]="postForm">
         <div class="form-group">
+            <input type="text" [class.is-invalid]="title?.invalid && (title?.dirty || title?.touched)"
+                class="form-control" id="title" formControlName="title" placeholder="Title">
+            <small *ngIf="title?.errors?.required && title?.touched" class="text-danger">
+                Title is
+                required.</small>
+            <small *ngIf="title?.errors?.minlength&& title?.touched" class="text-danger">Enter Some Thing :( </small>
         </div>
+        <div class="form-group">
+            <textarea type="text" [class.is-invalid]="body?.invalid && (body?.dirty || body?.touched)"
+                class="form-control" id="body" formControlName="body" placeholder="Body"></textarea>
+            <small *ngIf="body?.errors?.required && body?.touched" class="text-danger">
+                Content is
+                required.</small>
+            <small *ngIf="body?.errors?.minlength&& body?.touched" class="text-danger">Enter Some Thing :( </small>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="tags" formControlName="tags" placeholder="tags">
+        </div>
+        <div class="form-group">
+            <label for="image">Choose Cover Image</label>
+            <input type="file" class="btn-block" id="image" (change)="handleFileInput($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" role="button" [disabled]="!postForm.valid ||isClicked"
+            (click)="post(postForm.value)">
+            Post
+        </button>
     </form>
 </div>

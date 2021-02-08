@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-blogcreate',
@@ -7,14 +8,47 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./blogcreate.component.css']
 })
 export class BlogcreateComponent implements OnInit {
-
+  photo!: File;
+  isClicked: Boolean = false;
   postForm = new FormGroup({
-    
+    'title': new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    'body': new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
+    'tags': new FormControl('', []),
   });
 
-  constructor() { }
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+  }
+  get title() { return this.postForm.get('title') }
+  get body() { return this.postForm.get('body') }
+  get tags() { return this.postForm.get('tags') }
+
+  handleFileInput(event: any) {
+    let fileList: FileList = event.target.files;
+    this.photo = fileList[0];
+  }
+  post(body: any) {
+    this.isClicked = true;
+    const formData = new FormData();
+    formData.append('title', body.title);
+    formData.append('body', body.body);
+    formData.append('tags', body.tags);
+    formData.append('image', this.photo);
+    this.blogService.createBlog(formData).subscribe((result: any) => {
+      this.isClicked = false;
+      console.log(result);
+    }, (e) => {
+      console.log(e);
+      this.isClicked = false;
+    });
+
   }
 
 }

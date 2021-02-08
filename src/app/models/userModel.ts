@@ -5,7 +5,8 @@ export class User {
     username!: string;
     email!: string;
     createdDate!: Date;
-    profiePhoto!: string;
+    profilePhoto!: string;
+    cloudinary_id!: string;
     following!: string[];
     follower!: string[];
     articles!: string[];

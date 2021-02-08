@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsernameValidator } from 'src/app/helpers/validators/UsernameValidator';
 import { UserService } from 'src/app/services/user.service';
 
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(8),
     ]),
   })
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
   ngOnInit(): void {
   }
   get username() { return this.regForm.get('username') }
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
   register(body: any) {
     this.userService.register(body)
       .subscribe((result: any) => {
-
+        this.router.navigate(['login']);
       }, (e) => {
         this.invalidRegister = true;
         this.eMsg = e.error.message;

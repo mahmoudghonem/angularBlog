@@ -1,4 +1,5 @@
 <div class="container mt-5" [hidden]='isLoadedData'>
+    <p class="text-center">Lastest From Community</p>
     <div class="d-flex flex-wrap">
         <ng-container *ngFor="let item of articles | paginate: { id: 'foo',
         itemsPerPage: limit,
@@ -6,13 +7,14 @@
         totalItems: totalPage }">
             <app-blogcard class="col-12 col-md-6 col-lg-4">
                 <ng-container class="img">
-                    <img class="card-img-top" height="220" [src]="item.photo!= null ? item.photo : myImgUrl"
+                    <img class="card-img-top" height="150" [src]="item.photo!= null ? item.photo : myImgUrl"
                         alt="Card image cap">
                 </ng-container>
                 <ng-container class="title">{{item.title}}</ng-container>
-                <ng-container class="body">{{item.body |truncate:[200,'...']}}</ng-container>
+                <ng-container class="body">{{item.body |truncate:[100,'...']}}</ng-container>
                 <ng-container class="date">{{item.createdAt | date:'mediumDate'}}</ng-container>
                 <ng-container class="likes">{{item.likes.length}}</ng-container>
+                <ng-container class="reads">{{item.reads}}</ng-container>
             </app-blogcard>
         </ng-container>
     </div>

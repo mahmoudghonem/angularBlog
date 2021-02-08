@@ -50,11 +50,6 @@ import { AuthGuardService } from './services/auth-guard.service';
     })
   ],
   providers: [
-    //   {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptor,
-    //   multi: true
-    // }
     UserService,
     BlogService,
     AuthGuardService
