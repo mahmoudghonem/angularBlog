@@ -1,0 +1,6 @@
+<app-navbar></app-navbar>
+<app-articledetail [article]='article' [user]="user" (commentPressed)='pressComment($event)'></app-articledetail>
+<!-- <app-authordetail [user]="user"></app-authordetail> -->
+<div [hidden]="!commentPressed">
+    <app-articlecomments [article]='article'></app-articlecomments>
+</div>

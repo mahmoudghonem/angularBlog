@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark ">
     <div class="container-fluid">
-        <a class="navbar-brand font-weight-bold" href="#">Devs Blog</a>
+        <!-- <a class="navbar-brand font-weight-bold" href="#">Devs Blog</a> -->
+        <img class="navbar-brand" src="assets/logo.png" width="150" height="50" (click)="navTohome()">
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,7 +12,8 @@
                     <a class="btn btn-outline-success text-white btn-block" role="button" (click)="login()">Log in</a>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-success  text-white btn-block " type="button" (click)="register()">Create Account</button>
+                    <button class="btn btn-success  text-white btn-block " type="button" (click)="register()">Create
+                        Account</button>
                 </li>
             </ul>
         </div>

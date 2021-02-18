@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class BlogcreateComponent implements OnInit {
     'tags': new FormControl('', []),
   });
 
-  constructor(private blogService: BlogService) { }
+  constructor(private blogService: BlogService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -44,6 +45,7 @@ export class BlogcreateComponent implements OnInit {
     this.blogService.createBlog(formData).subscribe((result: any) => {
       this.isClicked = false;
       console.log(result);
+      this.router.navigate(['article/', result._id])
     }, (e) => {
       console.log(e);
       this.isClicked = false;

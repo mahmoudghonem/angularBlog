@@ -53,11 +53,15 @@ export class UserService {
   getFollowers(id: any) {
     return this.http.get(`${this.url}followers/${id}`);
   }
+  checkFollowing(id:any)
+  {
+    return this.http.get(`${this.url}followingCheck/${id}`);
+  }
   follow(id: any) {
-    return this.http.patch(`${this.url}follow/${id}`, {});
+    return this.http.patch(`${this.url}follow/${id}`, null);
   }
   unFollow(id: any) {
-    return this.http.patch(`${this.url}unfollow/${id}`, {});
+    return this.http.patch(`${this.url}unfollow/${id}`, null);
   }
   update(body: any) {
     return this.http.patch(`${this.url}update`, body);

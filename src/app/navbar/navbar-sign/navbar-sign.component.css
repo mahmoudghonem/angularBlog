@@ -1,10 +1,13 @@
 .navbar{
     background-color: #39424E;
 }
+  .navbar-nav .nav-link {
+    padding-bottom: 0;
+  }
 .navbar > li{
+    padding-top: 0;
     padding-left:5px;
     padding-right:5px;
-    display: inline-block;
   }
 
 .navbar-expand-sm{

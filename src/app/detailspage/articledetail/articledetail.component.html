@@ -1,0 +1,55 @@
+<div class="container pt-5" *ngIf="loadedData">
+    <ngx-skeleton-loader [count]="20" appearance="circle"></ngx-skeleton-loader>
+</div>
+<div class="container pt-5" *ngIf='!loadedData'>
+    <div class="card">
+        <img class="card-img-top" height="400px" [src]="article.photo!=null ? article.photo : myImgSrc">
+        <div class="card-body">
+            <img [src]="user.profilePhoto!= null ? user.profilePhoto : myImgUrl" width="40" height="40"
+                class="rounded-circle">
+            <a class="text-black-50 font-weight-bold">{{user.firstname + ' ' + user.lastname}}</a>
+            <button class="btn btn-info ml-2" *ngIf="isAUser && isFollowing" [hidden]="sameUser"
+                (click)="unFollowUser()">UnFollow</button>
+            <button class="btn btn-info ml-2" *ngIf="isAUser && !isFollowing" [hidden]="sameUser"
+                (click)="followUser()">Follow</button>
+            <h1 class="card-title font-weight-bold">{{article.title}}</h1>
+            <span *ngFor="let tag of article.tags " appGetrandomcolor class="card-subtitle text-white mr-2">
+                {{"#"+tag}}
+            </span>
+            <h6 class="card-text mb-3">{{article.body}}</h6>
+            <div>
+                <ng-container *ngIf="isLiked; then unLikeBtn; else likeBtn">
+                </ng-container>
+
+                <ng-template #likeBtn>
+                    <div class="float-left">
+                        <span class="fa fa-heart-o fa-2x" (click)="like()"></span>
+                        <span class="p-1">
+                            {{article.likes.length}}
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template #unLikeBtn>
+                    <div class="float-left">
+                        <span class="fa fa-heart fa-2x" (click)="unLike()"></span>
+                        <span class="p-1">
+                            {{article.likes.length}}
+                        </span>
+                    </div>
+                </ng-template>
+                <div class="float-left pl-3">
+                    <span class="fa fa-comment-o fa-2x" (click)="openComments()"></span>
+                    <span class="p-1">
+                        {{article.comments.length}}
+                    </span>
+                </div>
+                <div class="float-right">
+                    <span class="fa fa-eye fa-1x"></span>
+                    <span class="p-1">
+                        {{article.reads}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>

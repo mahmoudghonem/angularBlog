@@ -1,0 +1,4 @@
+<ng-container [ngSwitch]="isLogin">
+    <app-navbar-sign *ngSwitchCase="true"></app-navbar-sign>
+    <app-navbar-unsign *ngSwitchCase="false"></app-navbar-unsign>
+</ng-container>

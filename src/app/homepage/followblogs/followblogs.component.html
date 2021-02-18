@@ -1,23 +1,30 @@
-<div class="container mt-5" [hidden]='isLoadedData'>
+<div class="container mt-5">
+    <ngx-skeleton-loader [count]="20" appearance="circle" *ngIf="isLoadedData"></ngx-skeleton-loader>
+</div>
+<div class="container mt-5" *ngIf="!isLoadedData" [hidden]="noData">
     <p class="text-center">Lastest From Following</p>
     <div class="d-flex flex-wrap">
-        <ng-container *ngFor="let item of articles | paginate: { id: 'foo',
+        <ng-container *ngFor="let item of articles | paginate: { id: 'followPage',
         itemsPerPage: limit,
         currentPage: currentPage,
-        totalItems: totalPage }">
-            <app-blogcard class="col-12 col-md-6 col-lg-4">
+        totalItems: totalDocs }">
+            <app-blogcard class="col-12 col-md-6 col-lg-4" [article]="item">
                 <ng-container class="img">
-                    <img class="card-img-top" height="220" [src]="item.photo!= null ? item.photo : myImgSrc"
+                    <img class="card-img-top" height="150" [src]="item.photo!= null ? item.photo : myImgSrc"
                         alt="Card image cap">
                 </ng-container>
                 <ng-container class="title">{{item.title}}</ng-container>
-                <ng-container class="body">{{item.body | truncate:[100,'...']}}</ng-container>
+                <ng-container class="body">{{item.body | truncate:[80,'...']}}</ng-container>
                 <ng-container class="date">{{item.createdAt | date:'mediumDate'}}</ng-container>
                 <ng-container class="likes">{{item.likes.length}}</ng-container>
+                <ng-container class="comments">{{item.comments.length}}</ng-container>
                 <ng-container class="reads">{{item.reads}}</ng-container>
             </app-blogcard>
         </ng-container>
     </div>
-    <pagination-controls id="foo" (pageChange)="loadPage($event)" (pageBoundsCorrection)="loadPage($event)"
-        previousLabel="<" nextLabel=">" [autoHide]="totalPage==1"></pagination-controls>
+    <div class="row justify-content-center m-2">
+        <pagination-controls id="followPage" [responsive]="true" (pageChange)="loadPage($event)"
+            (pageBoundsCorrection)="loadPage($event)" previousLabel="<" nextLabel=">" [autoHide]="totalPage==1">
+        </pagination-controls>
+    </div>
 </div>

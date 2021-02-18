@@ -1,5 +1,7 @@
+import { Comment } from 'src/app/models/commentModel';
+
 export class Article{
-    id!: string;
+    _id!: string;
     title!: string;
     body!: string;
     tags!: string[];
@@ -8,7 +10,7 @@ export class Article{
     photo!: string;
     cloudinary_id!: string;
     likes!: string[];
-    comments!: string[];
+    comments!: Comment[];
     reads!: number[];
     author!: string;
     userId!: string;

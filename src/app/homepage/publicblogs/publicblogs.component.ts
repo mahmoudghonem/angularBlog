@@ -9,30 +9,39 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class PublicblogsComponent implements OnInit {
   articles!: Article[];
-  isLoadedData: boolean = false;
+  isLoadedData: boolean = true;
+  noData: boolean = false;
   currentPage: number = 1;
   totalPage!: number;
+  totalDocs!: number;
   limit: number = 9;
   myImgUrl: string = 'assets/defaultBlogP.jpg';
   constructor(private articleService: BlogService) {
-    this.isLoadedData = true;
   }
   ngOnInit(): void {
-    this.articleService.getBlogs(this.currentPage, this.limit).subscribe((result: any) => {
-      this.totalPage = result.pagingCounter;
+    this.articleService.getBlogs(this.currentPage, this.limit).subscribe((result: any) => {      
+      this.totalPage = result.totalPages;
+      this.totalDocs = result.totalDocs;
       this.articles = result.docs;
-      if (this.articles.length == 0)
-        this.isLoadedData = true
-      else
+      if (this.articles.length === 0) {
         this.isLoadedData = false
+        this.noData = true;
+      } else {
+        this.isLoadedData = false
+        this.noData = false;
+      }
     }, (e) => {
+      console.log(e);
     })
   }
   loadPage(page: number) {
+    this.currentPage = page;
+
     this.articleService.getBlogs(page, this.limit).subscribe((result: any) => {
-      console.log(result);
       this.articles = result.docs;
     }, (e) => {
+      console.log(e);
+
     })
 
   }

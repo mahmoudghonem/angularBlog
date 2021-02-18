@@ -15,11 +15,21 @@ import { FollowblogsComponent } from './homepage/followblogs/followblogs.compone
 import { PublicblogsComponent } from './homepage/publicblogs/publicblogs.component';
 import { BlogcardComponent } from './homepage/blogcard/blogcard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { BlogcreateComponent } from './homepage/blogcreate/blogcreate.component';
+import { BlogcreateComponent } from './detailspage/blogcreate/blogcreate.component';
 import { TruncatePipe } from './helpers/pipes/truncate.pipe';
 import { UserService } from './services/user.service';
 import { BlogService } from './services/blog.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { BlogdetailComponent } from './detailspage/blogdetail/blogdetail.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { HomelandComponent } from './homepage/homeland/homeland.component';
+import { ClickPointerDirective } from './helpers/cursor/click-pointer.directive';
+import { ArticledetailComponent } from './detailspage/articledetail/articledetail.component';
+import { AuthordetailComponent } from './detailspage/authordetail/authordetail.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ArticlecommentsComponent } from './detailspage/articlecomments/articlecomments.component';
+import { GetrandomcolorDirective } from './helpers/randomcolor/getrandomcolor.directive';
+import { SearchpageComponent } from './searchpage/searchpage/searchpage.component';
 
 
 @NgModule({
@@ -35,13 +45,23 @@ import { AuthGuardService } from './services/auth-guard.service';
     BlogcardComponent,
     BlogcreateComponent,
     TruncatePipe,
-  ],
+    BlogdetailComponent,
+    NavbarComponent,
+    HomelandComponent,
+    ClickPointerDirective,
+    ArticledetailComponent,
+    AuthordetailComponent,
+    ArticlecommentsComponent,
+    GetrandomcolorDirective,
+    SearchpageComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    NgxSkeletonLoaderModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

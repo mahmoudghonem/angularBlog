@@ -1,0 +1,44 @@
+<div class="container pt-5">
+    <ngx-skeleton-loader [count]="20" appearance="circle" *ngIf="loadedData"></ngx-skeleton-loader>
+</div>
+<div class="container pt-5" *ngIf='!loadedData'>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="commentForm">
+                <div class="form-group row m-2 justify-content-end mb-5" *ngIf="isAUser">
+                    <textarea type="text" [class.is-invalid]="comment?.invalid && comment?.touched"
+                        class="form-control mb-2" row="3" id="comment" formControlName="comment"
+                        placeholder="comment"></textarea>
+                    <button type="submit" class="btn btn-primary float-right" role="button"
+                        [disabled]="!commentForm.valid ||isClicked" (click)="postComment(commentForm.value)">
+                        Comment
+                    </button>
+                </div>
+            </form>
+            <ng-container *ngFor="let item of comments">
+                <div class="mb-2">
+                    <div class="dropdown float-right" *ngIf="isUser === item.userId">
+                        <i class="dropdown-toggle" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"></i>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                            <a class="dropdown-item">Edit</a>
+                            <a class="dropdown-item" (click)="deleteComment(item._id)">Delete</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <img [src]="item.tempPP!= null ? item.tempPP : myImgUrl" width="40" height="40"
+                            class="d-inline-block rounded-circle align-top">
+                        <h6 class="pt-2">{{item.author}}</h6>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-title" style="font-size: 16px;">{{item.comment}}</p>
+                            <p class="card-text float-right" style="font-size: 11px;">{{item.createdAt | date:'short'}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

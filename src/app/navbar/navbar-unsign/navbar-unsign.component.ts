@@ -12,6 +12,9 @@ export class NavbarUnsignComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  navTohome() {
+    this.router.navigate(['']);
+  }
   login() {
     this.router.navigate(["login"]);
   }
