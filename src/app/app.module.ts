@@ -30,6 +30,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ArticlecommentsComponent } from './detailspage/articlecomments/articlecomments.component';
 import { GetrandomcolorDirective } from './helpers/randomcolor/getrandomcolor.directive';
 import { SearchpageComponent } from './searchpage/searchpage/searchpage.component';
+import { ProfilepageComponent } from './profile/profilepage/profilepage.component';
+import { SettingpageComponent } from './profile/settingpage/settingpage.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { SearchpageComponent } from './searchpage/searchpage/searchpage.componen
     AuthordetailComponent,
     ArticlecommentsComponent,
     GetrandomcolorDirective,
-    SearchpageComponent
+    SearchpageComponent,
+    ProfilepageComponent,
+    SettingpageComponent
     ],
   imports: [
     BrowserModule,

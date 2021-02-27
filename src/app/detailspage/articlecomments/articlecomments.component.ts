@@ -39,24 +39,22 @@ export class ArticlecommentsComponent implements OnInit, OnChanges {
 
     if (Object.keys(this.article).length !== 0) {
       this.loadedData = false;
-      this.comments = this.article.comments;
-      this.comments.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
-      for (let item of this.comments) {
-        item.tempPP = this.getPP(item.userId);
-      }
+      this.blogService.getBlog(this.article._id).subscribe((result: any) => {
+        this.comments = result.comments;
+        this.comments.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
+        for (let item of this.comments) {
+          item.tempPP = this.getPP(item.userId);
+        }
+      }, (e) => {
+        console.log(e);
+      });
     }
   }
   postComment(body: any) {
     this.blogService.commentBlog(this.article._id, body).subscribe((result) => {
-      body = {
-        ...body,
-        author: this.userService.currentUser.username,
-        userId: this.userService.currentUser.id,
-      }
-      const newArray = [body].concat(this.comments)
-      this.comments = newArray;
-      this.article.comments.length++;
       this.comment?.setValue('');
+      this.ngOnChanges();
+
     }, (e) => {
       console.log(e);
 

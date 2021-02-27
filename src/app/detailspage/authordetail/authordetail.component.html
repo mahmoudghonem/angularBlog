@@ -1,4 +1,17 @@
-<div class="pt-5">
-    <a class="text-dark font-weight-bold">{{user.firstname + ' ' + user.lastname}}</a>
-    <button class="btn btn-block btn-info" [disabled]="sameUser">Follow</button>
+<div class="container pt-5 float-right col-2" >
+    <ngx-skeleton-loader [count]="5" appearance="circle" *ngIf="loadedData"></ngx-skeleton-loader>
+    <div class="card text-center m-2" *ngIf="!loadedData">
+        <div class="card-body ">
+          <img [src]="user.profilePhoto!= null ? user.profilePhoto : myImgUrl" width="50" height="50"
+          class="d-inline-block mx-auto d-block  rounded-circle">
+          <h6 class="card-title text-dark font-weight-bold">{{user.firstname + ' ' + user.lastname}}</h6>
+          <div>
+              <button class="btn btn-info ml-2" *ngIf="isAUser && isFollowing" [hidden]="sameUser"
+              (click)="unFollowUser()">UnFollow</button>
+          <button class="btn btn-info ml-2" *ngIf="isAUser && !isFollowing" [hidden]="sameUser"
+              (click)="followUser()">Follow</button>
+          </div>
+          <p class="card-text">{{user.bio}}</p>
+        </div>
+      </div>
 </div>

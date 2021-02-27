@@ -19,15 +19,19 @@
         </div>
         <div class="form-group">
             <input type="text" class="form-control" id="tags" formControlName="tags" placeholder="tags">
-            <small *ngIf="tags?.touched" class="text-info">Enter Space Between Every Tag</small>
+            <small class="text-info">Enter Space Between Every Tag</small>
         </div>
         <div class="form-group">
             <label for="image">Choose Cover Image</label>
             <input type="file" class="btn-block" id="image" (change)="handleFileInput($event)">
         </div>
         <button type="submit" class="btn btn-primary float-right" role="button" [disabled]="!postForm.valid ||isClicked"
-            (click)="post(postForm.value)">
+            (click)="post(postForm.value)" [hidden]="isEditing">
             Post
+        </button>
+        <button type="submit" class="btn btn-primary float-right" role="button" [disabled]="!postForm.valid ||isClicked"
+            (click)="update(postForm.value)" [hidden]="!isEditing">
+            Update
         </button>
     </form>
 </div>

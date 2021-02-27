@@ -34,7 +34,10 @@ export class NavbarSignComponent implements OnInit {
         this.router.navigate(['search', t]);
       });
     }
+  }
 
+  navToProfile(){
+    this.router.navigate(['profile/',this.user._id]);
 
   }
   navTohome() {

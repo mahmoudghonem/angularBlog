@@ -21,6 +21,7 @@ export class ArticledetailComponent implements OnInit, OnChanges {
   isFollowing: boolean = false;
   isLiked: boolean = false;
   isAUser: boolean = false;
+  isSameUser!: string;
   currentUser!: any;
   isCommentPressed: Boolean = false;
   likes!: any;
@@ -29,6 +30,7 @@ export class ArticledetailComponent implements OnInit, OnChanges {
   constructor(private userService: UserService, private blogService: BlogService, private route: Router) {
     if (this.userService.currentUser) {
       this.currentUser = this.userService.currentUser;
+      this.isSameUser = this.userService.currentUser.id;
       this.isAUser = true;
     }
   }
@@ -101,5 +103,15 @@ export class ArticledetailComponent implements OnInit, OnChanges {
       console.log(e);
     });
   }
+  editPost() {
+    this.route.navigateByUrl('/writepost', { state: { article: this.article } });
 
+  }
+  deleteArticle() {
+    this.blogService.deleteBlog(this.article._id).subscribe((result) => {
+      this.route.navigate(['home'], { replaceUrl: true });
+    }, (e) => {
+      console.log(e);
+    })
+  }
 }

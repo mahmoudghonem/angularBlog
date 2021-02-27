@@ -54,8 +54,8 @@ export class BlogService {
   createBlog(formData: FormData) {
     return this.http.post(`${this.url}create`, formData);
   }
-  updatePost(id: any, body: any) {
-    return this.http.patch(`${this.url}update/${id}`, body);
+  updatePost(id: any, formData: FormData) {
+    return this.http.patch(`${this.url}update/${id}`, formData);
   }
   likeBlog(id: any) {
     return this.http.patch(`${this.url}like/${id}`, {});

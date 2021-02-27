@@ -4,6 +4,7 @@ export class User {
     lastname!: string;
     username!: string;
     email!: string;
+    bio!: string;
     createdDate!: Date;
     profilePhoto!: string;
     cloudinary_id!: string;

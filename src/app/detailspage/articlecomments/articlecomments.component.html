@@ -6,8 +6,7 @@
         <div class="card-body">
             <form [formGroup]="commentForm">
                 <div class="form-group row m-2 justify-content-end mb-5" *ngIf="isAUser">
-                    <textarea type="text" [class.is-invalid]="comment?.invalid && comment?.touched"
-                        class="form-control mb-2" row="3" id="comment" formControlName="comment"
+                    <textarea type="text" class="form-control mb-2" row="3" id="comment" formControlName="comment"
                         placeholder="comment"></textarea>
                     <button type="submit" class="btn btn-primary float-right" role="button"
                         [disabled]="!commentForm.valid ||isClicked" (click)="postComment(commentForm.value)">
